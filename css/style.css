@@ -1,0 +1,84 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body{font-family: 'Open Sans', sans-serif;}
+.container{width: 1170px; margin: 0 auto; background-color: rgba(0,0,0,.5); height: inherit}
+
+
+#header{height: 72px; width: 100%; position: fixed; top: 0; left: 0; background: rgba(255,255,255,1); transition: .6s; box-shadow: 0 2px 5px rgba(0,0,0,.15);}
+#header>.container{position: relative;}
+
+.section1{height: 800px; background: rgb(39, 38, 38);}
+.section2{height: 400px; background: rgb(60, 82, 162);}
+.section3{height: 700px; background: rgb(181, 37, 171);}
+.section4{height: 600px; background: rgb(35, 181, 35);}
+
+#header.addParallaxUp{animation: headerParalaxUp 0.5s ease-in-out forwards;}
+@keyframes headerParalaxUp {
+    0%{transform: translateY(0px);}
+    100%{transform: translateY(-80px);}
+}
+
+#header.addParallaxDown72{animation: addParallaxDown72 0.5s ease-in-out forwards;}
+@keyframes addParallaxDown72 {
+    0%{height: 60px}
+    100%{height: 72px;}
+}
+#header.addParallaxDown60{animation: addParallaxDown60 0.5s ease-in-out forwards;}
+@keyframes addParallaxDown60 {
+    0%{transform: translateY(-70px); height: 60px;}
+    100%{transform: translateY(0);height: 60px;}
+}
+
+
+.header_inner{display: flex; justify-content: space-between; align-items: center; height: 72px; transition: .5s;}
+
+/* 모바일 메뉴 */
+.header_inner .mobile{display: none;}
+.header_inner .mobile .fa-bars{font-size: 25px; cursor: pointer;}
+.header_inner .mobile .mobile-nav{position: absolute; top: 72px; left: 0; width: 100%; display: none;}
+.header_inner .mobile .mobile-nav ul li{border-bottom: 1px solid #ddd; background: #333;}
+.header_inner .mobile .mobile-nav ul li a{display: block; padding: 20px 10px;text-transform: uppercase; color: rgba(255,255,255,.8)}
+
+.header_inner .right-box{display: flex;}
+.header_inner .right-box nav ul{display: flex;}
+.header_inner .right-box nav ul li{margin: 0 20px;}
+.header_inner .right-box nav ul li>a{font-size: 12px; font-weight: 700; color: rgba(0,0,0,.6); position: relative; text-transform: uppercase; padding: 30px 0;}
+.header_inner .right-box nav ul li a:hover{color: rgba(0,0,0,1); }
+.header_inner .right-box nav ul li a .mian-menu-deco{display: block; width: 100%; height: 2px; background: #000; position: absolute; bottom: 30%; left: 0; transform: scale(0,1); transition: .3s}
+.header_inner .right-box nav ul li a:hover .mian-menu-deco{transform: scale(1,1);}
+.header_inner .right-box aside{display: flex;}
+.header_inner .right-box aside span{margin: 0 10px;}
+.header_inner .right-box aside span > i{display: block; width: 1px; height: 10px; background: rgb(187, 187, 187); position: relative; top: 3px}
+
+/* 2deps */
+.header_inner .right-box nav>ul>li>.sub{background: #333; display: none;}
+.header_inner .right-box nav>ul>li:hover>.sub{background: #333; display: block;}
+.header_inner .right-box nav>ul>li>.sub>ul{padding: 50px;}
+.header_inner .right-box nav>ul>li>.sub>ul>li{width: 25%;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl{line-height: 210%;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dt{width: 100%;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dt>a{color: #fff; font-weight: bold; font-size: 11px; text-transform: uppercase; transition: .3s ease-in-out;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dt>a:hover{transform: translateX(6px);}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dd{width: 100%;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dd>a{color: #939393; font-size: 12px; transition: .3s ease-in-out; display: block;}
+.header_inner .right-box nav>ul>li>.sub>ul>li>dl>dd>a:hover{transform: translateX(6px); color: #fff;}
+
+.header_inner .right-box nav>ul>li >.sub1,
+.header_inner .right-box nav>ul>li >.sub3,
+.header_inner .right-box nav>ul>li >.sub5,
+.header_inner .right-box nav>ul>li >.sub6
+{position: absolute; top: 72px; left: 0; width: 100%;}
+.header_inner .right-box nav>ul>li >.sub24{position: absolute; top: 72px;}
+
+
+
+
+@media screen  and (max-width: 1180px){
+    .container{width: 100%; padding: 0 20px;}
+}
+
+@media screen  and (max-width: 780px){
+    .header_inner .mobile{display:block;}
+    .header_inner .right-box{display: none;} 
+}
