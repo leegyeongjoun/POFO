@@ -49,7 +49,21 @@
                         oldScr = newScr;
                     });
                 },
-                section2:function(){},
+                section2:function(){
+                    const titT=$('.section2 .title').offset().top;
+                    let widH=$(window).height();
+                    let titTop=titT-widH;
+
+                    $(window).scroll(function(){
+                        if($(window).scrollTop()>titTop){
+                            $('.section2').addClass('addParallax');
+                        }
+                        // 스크롤이 맨 위에있으면
+                        if($(window).scrollTop() == 0){
+                            $('.section2').removeClass('addParallax');
+                        }
+                    })
+                },
                 section3:function(){}
             }
             scrollEvent.init();
@@ -59,8 +73,71 @@
             $('.fa-bars').click(function(){
                 $('.mobile-nav').slideToggle();
             });
+
+            // 2deps 3deps만들기
+            const container = $('#header .container');
+            const mainBtn = $('#nav>ul>li>a');
+            const sub = $('.sub');
+            const subBtn = $('.sub-btn');
+            const subSub = $('.sub-sub');
+            
+            // 2deps보이게 하기
+            mainBtn.on({mouseenter: function(){
+                sub.stop().fadeOut(0);
+                $(this).next().stop().fadeIn(300);
+            }})
+            // 3deps보이게 하기
+            subBtn.on({mouseenter:function(){
+                subSub.stop().fadeOut(0);
+                $(this).next().stop().fadeIn(300);
+            }})
+
+            container.on({mouseleave:function(){
+                sub.stop().fadeOut(300);
+                subSub.stop().fadeOut(300);
+            }})
         },
-        section1:function(){},
+        // 이미지 넓이 
+        section1:function(){
+            $(window).resize(function(){
+                let imgW = $('.slide-container>ul>li');
+                imgW.each(function(){
+                    let thisImgW=$(this).find('img').width();
+                    //console.log(thisImgW);
+                    if(thisImgW<1920){
+                        // 이미지의 넓이와 높이를 알아야함 만약에 800 400이면 *.5만 하면됨
+                        $('.section1').height(thisImgW*0.46);
+                    }
+                })
+            });
+            //슬라이더
+            const imgBanner = $('.slide-container>ul>li');
+            let setIn;
+            let current=0;
+
+            mainSlide();
+            function mainSlide(){
+                setIn=setInterval(function(){
+                    prev=imgBanner.eq(current);
+                    move(prev, 0, '-100%');
+                    current++;
+                    if(current==imgBanner.size()){
+                        current=0;
+                    }
+                    next=imgBanner.eq(current);
+                    move(next, '100%', 0);
+                },3000)
+            }
+            function move(tg, start, end){
+                tg.css('left',start).stop().animate({left: end},500);
+            }
+
+            $('.slide-container').on({mouseenter:function(){
+                clearInterval(setIn);
+            }, mouseleave(){
+                mainSlide();
+            }})
+        },
         section2:function(){},
         section3:function(){},
         section4:function(){},
