@@ -9,8 +9,6 @@ body{font-family: 'Open Sans', sans-serif;}
 #header>.container{position: relative;}
 
 
-.section3{height: 700px; background: rgb(181, 37, 171);}
-.section4{height: 600px; background: rgb(35, 181, 35);}
 
 #header.addParallaxUp{animation: headerParalaxUp 0.5s ease-in-out forwards;}
 @keyframes headerParalaxUp {
@@ -110,15 +108,20 @@ body{font-family: 'Open Sans', sans-serif;}
 .section1 .slide-container ul li .title-box span a{display: inline-block; padding: 10px 32px; font-size: 14px; background: #fff; color: black; border: 2px solid #fff; text-transform: uppercase; border-radius: 20px; transition: .3s;}
 .section1 .slide-container ul li .title-box span a:hover{background: transparent; color: #fff;}
 
+/* section2, 3 공통속성 */
+.title{text-align: center; padding: 0 15px 80px 15px;}
+.title h2{color: #939393; padding: 0 0 10px 0;}
+.title h3{font-size: 25px; color: #232323; line-height: 120%;}
+.content{width: 100%;}
+.section2 .content>ul{display: flex;}
+.content>ul>li{flex-basis: 33.333%; margin: 0 2px;}
+.content>ul>li>.column-wrap{padding: 0 15px; background: #fff;}
+.content>ul>li>.column-wrap .img-box{width: 100%;}
+.content>ul>li>.column-wrap .img-box img{width: 100%; filter:grayscale(0); transition: .3s ease-in-out;}
+
+
 /* section2 이미지 텍스트 부분 */
 .section2{width: 100%; height: auto; background: #f7f7f7; padding: 130px 0; overflow: hidden;}
-.setction2-wrap .title{text-align: center; padding: 0 15px 80px 15px;}
-.setction2-wrap .title h2{color: #939393; padding: 0 0 10px 0;}
-.setction2-wrap .title h3{font-size: 25px; color: #232323; line-height: 120%;}
-.setction2-wrap .content{width: 100%;}
-.setction2-wrap .content>ul{display: flex;}
-.setction2-wrap .content>ul>li{flex-basis: 33.333%; margin: 0 2px;}
-.setction2-wrap .content>ul>li>.column-wrap{padding: 0 15px; background: #fff;}
 .setction2-wrap .content>ul>li>.column-wrap .img-box{width: 100%;}
 .setction2-wrap .content>ul>li>.column-wrap .img-box img{width: 100%; filter:grayscale(0); transition: .3s ease-in-out;}
 .setction2-wrap .content>ul>li>.column-wrap .img-box img:hover{filter:grayscale(1);}
@@ -157,16 +160,170 @@ body{font-family: 'Open Sans', sans-serif;}
 }
 
 
+/* section3 */
+.section3{width: 100%; height: auto; background: #212121; padding: 130px 0; overflow: hidden;}
+.section3 h3{color: #fff; font-weight: bold;}
+.section3 .content ul li .column-wrap{
+    background: #fff;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+}
+.section3 .content ul li .column-wrap:after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: .8%;
+    left: 0;
+    bottom: 0;
+    background: #ff214f;
+    z-index: 1;
+    transition: .2s ease-in-out;
+}
+.section3 .content ul li .column-wrap:hover:after{
+    height: 100%;
+    background: #2f2f2f;
+}
+.section3 .content ul li .column-wrap .text-box{
+    position: relative;
+    z-index: 2;
+}
+.section3 .content ul li .column-wrap .text-box h4{
+    padding: 0 0 25px 0;
+}
+.section3 .content ul li .column-wrap .text-box h4 i{
+    font-size: 50px;
+    transition: .2s;
+    color: #ff214f;
+}
+.section3 .content ul li .column-wrap:hover .text-box h4 i{
+    color: #fff;
+}
+.section3 .content ul li .column-wrap .text-box h5{
+    font-size: 14px;
+    padding: 0 0 15px 0;
+    font-weight: bold;
+}
+.section3 .content ul li .column-wrap:hover .text-box h5{
+    color: #fff;
+}
+.section3 .content ul li .column-wrap .text-box p{
+    font-size: 14px;
+    color: #6f6f6f;
+    line-height: 170%;
+}
+.section3 .content ul li .column-wrap:hover .text-box p{
+    color: #fff;
+}
+
+.section2.addParallax .setction2-wrap .title{animation: sec2Ani1 1s ease-in-out forwards;}
+.section2.addParallax .setction2-wrap .content>ul>li:nth-child(1){animation: sec2Ani2 1.2s ease-in-out forwards;}
+.section2.addParallax .setction2-wrap .content>ul>li:nth-child(2){animation: sec2Ani3 1.4s ease-in-out forwards;}
+.section2.addParallax .setction2-wrap .content>ul>li:nth-child(3){animation: sec2Ani4 1.6s ease-in-out forwards;}
+.section3.addParallax .title{
+    animation: sec3Ani1 1s ease-in-out forwards;
+}
+.section3.addParallax .content ul li:nth-child(1){
+    animation: sec3Ani2 1.2s ease-in-out forwards;
+}
+.section3.addParallax .content ul li:nth-child(2){
+    animation: sec3Ani3 1.4s ease-in-out forwards;
+}
+.section3.addParallax .content ul li:nth-child(3){
+    animation: sec3Ani4 1.6s ease-in-out forwards;
+}
+.section3.addParallax .content ul li:nth-child(4){
+    animation: sec3Ani5 1.8s ease-in-out forwards;
+}
+
+@keyframes sec3Ani1 {
+    0%{transform: translateY(200px); opacity: 0;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+@keyframes sec3Ani2 {
+    0%{transform: translateY(1000px); opacity: 0;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+@keyframes sec3Ani3 {
+    0%{transform: translateY(1000px); opacity: 0;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+@keyframes sec3Ani4 {
+    0%{transform: translateY(1000px); opacity: 0;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+@keyframes sec3Ani5 {
+    0%{transform: translateY(1000px); opacity: 0;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+
+/* section4 */
+.section4{width: 100%; background: #fff;}
+.section4 .container{width: 100%;}
+.section4 .container .sec4-wrap{width: 100%;}
+.section4 .container .sec4-wrap .title{padding: 80px 0; text-align: center;}
+.section4 .container .sec4-wrap .title div{display: inline-block;}
+.section4 .container .sec4-wrap .title div>ul{display: flex;}
+.section4 .container .sec4-wrap .title div>ul>li{margin: 25px;}
+.section4 .container .sec4-wrap .title div>ul>li>a{display: block; padding: 0 0 5px 0; border-bottom: 1px solid transparent; color: #6f6f6f; font-weight: bold; transition: .2s;}
+.section4 .container .sec4-wrap .title div>ul>li>a:hover,
+.section4 .container .sec4-wrap .title div>ul>li>a:focus{border-bottom: 1px solid #6f6f6f;}
+/* .section4 .container .sec4-wrap .content{overflow: hidden; width: 100%;}
+.section4 .container .sec4-wrap .content>.gallery{position: relative; width: 100%; height: calc(1903px/4*0.8125*2);} */
+/* 1920에서 스크롤 값 17px 뺴고 4칸 나오게 하기(넓이값)위해 4 2칸이라 곱하기 2해준다. 0.8125를 곱한건 높이값 */
+/* .section4 .container .sec4-wrap .content>.gallery>li{position: absolute; width: calc(1903px/4); height: calc(1903px/4*0.8125);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(1){top: (1903px/4*0.8125*0); left: calc(1903px/4*0);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(2){top: (1903px/4*0.8125*0); left: calc(1903px/4*1);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(3){top: (1903px/4*0.8125*0); left: calc(1903px/4*2);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(4){top: (1903px/4*0.8125*0); left: calc(1903px/4*3);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(5){top: (1903px/4*0.8125*1); left: calc(1903px/4*0);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(6){top: (1903px/4*0.8125*1); left: calc(1903px/4*1);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(7){top: (1903px/4*0.8125*1); left: calc(1903px/4*2);}
+.section4 .container .sec4-wrap .content>.gallery>li:nth-child(8){top: (1903px/4*0.8125*1); left: calc(1903px/4*3);} */
+.section4 .container .sec4-wrap .content{overflow: hidden; width: 100%}
+.section4 .container .sec4-wrap .content .gallery{position: relative; width: 100%;height: calc(1903px/4*0.8125*2);}
+.section4 .container .sec4-wrap .content .gallery li{position: absolute; width:calc(1903px/4); height: calc(1903px/4*0.8125);}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(1){top: calc(1903px/4*0.8125*0); left:calc(1903px/4*0)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(2){top: calc(1903px/4*0.8125*0); left:calc(1903px/4*1)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(3){top: calc(1903px/4*0.8125*0); left:calc(1903px/4*2)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(4){top: calc(1903px/4*0.8125*0); left:calc(1903px/4*3)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(5){top: calc(1903px/4*0.8125*1); left:calc(1903px/4*0)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(6){top: calc(1903px/4*0.8125*1); left:calc(1903px/4*1)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(7){top: calc(1903px/4*0.8125*1); left:calc(1903px/4*2)}
+.section4 .container .sec4-wrap .content .gallery li:nth-child(8){top: calc(1903px/4*0.8125*1); left:calc(1903px/4*3)}
+
+.section4 .container .sec4-wrap .content>.gallery>li>.img-wrap{width: 100%;}
+.section4 .container .sec4-wrap .content>.gallery>li>.img-wrap .img-btn{width: 100%;}
+.section4 .container .sec4-wrap .content>.gallery>li>.img-wrap .img-btn img{width: 100%;}
+
 
 @media screen  and (max-width: 1180px){
     .container{width: 100%; padding: 0 20px;}
+}
+
+@media screen  and (max-width: 1060px){
+    .setction2-wrap .content>ul{flex-direction: column;}
+    .setction2-wrap .content>ul>li{flex-basis: 100%; margin: 5px 0px;}
+
+    /* 순서를 바꾸고싶을 때 */
+    /* .setction2-wrap .content>ul>li:nth-child(1){order: 3;}
+    .setction2-wrap .content>ul>li:nth-child(2){order: 2;}
+    .setction2-wrap .content>ul>li:nth-child(3){order: 1;} */
+}
+
+@media screen and (max-width: 980px){
+    .content>ul{flex-wrap: wrap;}
+    .setction3-wrap .content>ul>li{flex-basis: 50%; margin: 0; padding: 5px;}
 }
 
 @media screen  and (max-width: 890px){
     .header_inner .right-box #aside{display: none;} 
 }
 
-@media screen  and (max-width: 780px){
+@media screen  and (max-width: 800px){
     .header_inner .mobile{display:block;}
     .header_inner .right-box{display: none;} 
+
+    .setction3-wrap .content>ul>li{flex-basis: 100%; margin: 0; padding: 5px;}
 }

@@ -62,9 +62,23 @@
                         if($(window).scrollTop() == 0){
                             $('.section2').removeClass('addParallax');
                         }
-                    })
+                    });
                 },
-                section3:function(){}
+                section3:function(){
+                    const titT=$('.section3 .title').offset().top;
+                    let widH=$(window).height();
+                    let titTop=titT-widH;
+
+                    $(window).scroll(function(){
+                        if($(window).scrollTop()>titTop){
+                            $('.section3').addClass('addParallax');
+                        }
+                        // 스크롤이 맨 위에있으면
+                        if($(window).scrollTop() == 0){
+                            $('.section3').removeClass('addParallax');
+                        }
+                    });
+                }
             }
             scrollEvent.init();
         },
@@ -140,7 +154,217 @@
         },
         section2:function(){},
         section3:function(){},
-        section4:function(){},
+        section4:function(){
+            let no=0;
+            //갤러리 이벤트
+            //클릭 이벤트
+            //ALL
+            //hide
+            //show;20,23,22,21,24,16,26,19
+            let winW= $(window).width(); // 1903px 스크롤바 17px 뺏기때문에
+            //let galleryW = $('.gallery').width(); //gallery의 넓이 값
+            webResizeFn();
+            $(window).resize(function(){webResizeFn();})
+            function webResizeFn(){
+                winW=$(window).width();
+                $('.gallery-btn').eq(0).on({//all일때
+                    click:function(){
+                        no=0;
+                        gallery();
+                    }
+                });
+                //hide 20,22,19
+                //show 23,21,24,16,26
+                $('.gallery-btn').eq(1).on({//BROCHURE일때
+                    click:function(){
+                        no=1;
+                        gallery();
+                    }
+                });
+                //hide 20,19
+                //show 23,22,21,24,16,26
+                $('.gallery-btn').eq(2).on({//BRANDING일때
+                    click:function(){
+                        no=2;
+                        gallery();
+                    }
+                });
+                $('.gallery-btn').eq(3).on({//IDENTITY일때
+                    click:function(){
+                        no=3;
+                        gallery();
+                    }
+                });
+                $('.gallery-btn').eq(4).on({//WEB일때
+                    click:function(){
+                        no=4;
+                        gallery();
+                    }
+                });
+                $('.gallery-btn').eq(5).on({//PHOTOGRAPHY일때
+                    click:function(){
+                        no=5;
+                        gallery();
+                    }
+                });
+                
+                // console.log(winW); 
+                if(winW>=1427){
+                    $('.gallery').css('height','calc(1903px/4*0.8125*2)');
+                    gallery();
+                    function gallery(){
+                        if(no==0){//all일때
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*3},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*1},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*1, left: 1903/4*2},300);
+                            $('.gallery li').eq(7).show().animate({top: 1903/4*0.8125*1, left: 1903/4*3},300);
+                        }else if(no==1){//BROCHURE일때
+                            //hide 0,2,7
+                            //show 1,3,4,5,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*0, left: 1903/4*3},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                        }else if(no==2){//BRANDING일때
+                            //hide 0,7
+                            //show 1,2,3,4,5,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*0, left: 1903/4*3},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*1, left: 1903/4*1},300);
+                        }else if(no==3){//IDENTITY일때
+                            //hide 1,3,6,7
+                            //show 0,2,4,5
+                            $('.gallery li').eq(1).hide();
+                            $('.gallery li').eq(3).hide();
+                            $('.gallery li').eq(6).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*0, left: 1903/4*3},300);
+        
+                        }else if(no==4){//WEB일때
+                            //hide 1,2,3,4,5,6
+                            //show 0,7
+                            $('.gallery li').eq(1).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(3).hide();
+                            $('.gallery li').eq(4).hide();
+                            $('.gallery li').eq(5).hide();
+                            $('.gallery li').eq(6).hide();
+        
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(7).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                        }else{//PHOTOGRAPHY일때
+                            //hide 0,2,4,5,7
+                            //show 1,3,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(4).hide();
+                            $('.gallery li').eq(5).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                        }
+                    }
+                }else if(winW>=951 && winW<1427){
+                    //console.log(951);
+                    $('.gallery').css('height','calc(1903px/4*0.8125*3)');
+                    gallery();
+                    function gallery(){
+                        if(no==0){//all일때
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*1, left: 1903/4*1},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*2},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*2, left: 1903/4*0},300);
+                            $('.gallery li').eq(7).show().animate({top: 1903/4*0.8125*2, left: 1903/4*1},300);
+                        }else if(no==1){//BROCHURE일때
+                            //hide 0,2,7
+                            //show 1,3,4,5,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*1, left: 1903/4*1},300);
+                        }else if(no==2){//BRANDING일때
+                            //hide 0,7
+                            //show 1,2,3,4,5,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*1},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*1, left: 1903/4*2},300);
+                        }else if(no==3){//IDENTITY일때
+                            //hide 1,3,6,7
+                            //show 0,2,4,5
+                            $('.gallery li').eq(1).hide();
+                            $('.gallery li').eq(3).hide();
+                            $('.gallery li').eq(6).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(2).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(4).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                            $('.gallery li').eq(5).show().animate({top: 1903/4*0.8125*1, left: 1903/4*0},300);
+        
+                        }else if(no==4){//WEB일때
+                            //hide 1,2,3,4,5,6
+                            //show 0,7
+                            $('.gallery li').eq(1).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(3).hide();
+                            $('.gallery li').eq(4).hide();
+                            $('.gallery li').eq(5).hide();
+                            $('.gallery li').eq(6).hide();
+        
+                            $('.gallery li').eq(0).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(7).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                        }else{//PHOTOGRAPHY일때
+                            //hide 0,2,4,5,7
+                            //show 1,3,6
+                            $('.gallery li').eq(0).hide();
+                            $('.gallery li').eq(2).hide();
+                            $('.gallery li').eq(4).hide();
+                            $('.gallery li').eq(5).hide();
+                            $('.gallery li').eq(7).hide();
+        
+                            $('.gallery li').eq(1).show().animate({top: 1903/4*0.8125*0, left: 1903/4*0},300);
+                            $('.gallery li').eq(3).show().animate({top: 1903/4*0.8125*0, left: 1903/4*1},300);
+                            $('.gallery li').eq(6).show().animate({top: 1903/4*0.8125*0, left: 1903/4*2},300);
+                        }
+                    }
+                }
+            }
+        },
         footer:function(){}
     }
     Agency.init();
