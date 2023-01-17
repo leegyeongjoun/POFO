@@ -123,11 +123,11 @@
             mainSlide();
             function mainSlide(){
                 seIn=setInterval(function(){
-                    prev=imgBanner.eq(current);
+                    let prev=imgBanner.eq(current);
                     move(prev, 0, '-100%');
                     current++;
                     if(current==imgBanner.size()) current=0;
-                    next=imgBanner.eq(current);
+                    let next=imgBanner.eq(current);
                     move(next, '100%', 0);
                 },3000);
             }
@@ -154,7 +154,7 @@
             
                 
                
-            winW=$(window).width();
+            //winW=$(window).width();
             $('.gallery-btn').eq(0).on({
                 click:function(){
                     no=0;

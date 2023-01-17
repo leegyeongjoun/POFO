@@ -1,26 +1,16 @@
-<!DOCTYPE HTML>
-<html lang='ko'>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>pofo</title>
-	<meta charset='utf-8'>
-	<meta name='Viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.6'>
-	<meta name='Title' content='pofo'>
-	<meta name='Subject' content='pofo반응형웹사이트클론코딩'>
-	<meta name='Keywords' content='pofo, 포트폴리오'>
-	<meta name='Author' content='jeehyun'>
-	<meta name='Publisher' content='jeehyun'>
-	<meta name='Description' content='클론코딩'>
-	<meta name='Robots' content='noindex, nofollow'>
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React웹 설치 및 컴포넌트 생성과 사용</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
 
-	<link rel='stylesheet' href='css/reset.css'>
-	<link rel='stylesheet' href='css/style.css'>
-
-	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
@@ -32,721 +22,831 @@
     <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-    <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon" />
-    
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png"> -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <!-- 리액트 웹개발 오픈소스 -->
+    <script src="./js/react.development.js"></script> 
+    <!-- dom보다 위에 있어여함 -->
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <!-- 낮은 브라우저에서도 호환해야하기 때문에 -->
 
-	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-	<script src='./js/script.js' defer></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 
 </head>
 <body>
-	<ul id="skip">
-		<li><a href="#header">헤더 바로가기</a></li>
-		<li><a href="#nav">메뉴 바로가기</a></li>
-		<li><a href="#main">내용 바로가기</a></li>
-	</ul>
-    <div id="wrap">
-        <header id="header">
-            <div class="container">
-                 <div class="header_inner">
-                    <div class="left-box">
-                        <h1><a href="#" title="logo"><img src="./img/logo.png" alt="logo"></a></h1>
+    <!-- 리액트는 클래스 방식과 함수형 방식이 있는데 유지보수를 해야한다면 클래스방식이 더 많음 -->
+    <!-- 리액트는 class를 className로해야함 -->
+    <!-- root에 우리가 만드는 WrapConponent 넣어줘야함-->
+    <div id="root"></div>
+    <script type="text/babel">
+        'use strict';
+
+        // index는 최상위 컴포넌트 이름을 지어주는 것
+        class WrapConponent extends React.Component {
+            render() {
+                return (
+                    // 한개의 div안에서 들어와야한다.
+                    // 구조를 하나씩 가져오는것 헤더와 메인 푸터 메인 안에 section들도 가져오기
+                    <div id="wrap">
+                        <HeaderComponent />
+                        <MainComponent />
+                        <FooterComponent />
                     </div>
-                    <div class="right-box">
-                        <nav id="nav">
-                            <ul>
-                                <li>
-                                    <a href="#" title="HOME">home <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub1">
-                                        <ul>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Classic Corporate</a></dd>
-                                                    <dd><a href="#">Classic Digital Agency</a></dd>
-                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
-                                                    <dd><a href="#">Classic Web Agency</a></dd>
-                                                    <dd><a href="#">Classic One Page</a></dd>
-                                                    <dd><a href="#">Classic Start Up</a></dd>
-                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
-                                                    <dd><a href="#">Classic Business</a></dd>
-                                                    <dd><a href="#">Classic Shop</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Creative Studio</a></dd>
-                                                    <dd><a href="#">Creative Business</a></dd>
-                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Branding Agency</a></dd>
-                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Small Business</a></dd>
-                                                    <dd><a href="#">Creative Designer</a></dd>
-                                                    <dd><a href="#">Creative Agency</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Portfolio Minimal</a></dd>
-                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
-                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
-                                                    <dd><a href="#">Portfolio Personal</a></dd>
-                                                    <dd><a href="#">Portfolio Metro</a></dd>
-                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
-                                                    <dd><a href="#">Portfolio Photographer</a></dd>
-                                                    <dd><a href="#">Portfolio Parallax</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Blog Grid</a></dd>
-                                                    <dd><a href="#">Blog Masonry</a></dd>
-                                                    <dd><a href="#">Blog Clean</a></dd>
-                                                    <dd><a href="#">Blog Personal</a></dd>
-                                                </dl>
-                                            </li>
-                                        </ul>
+                );
+            }
+        }
+            // 하위 또는 자식 컴포넌트      
+            // input과 image는 원래 닫혀있지 않기 때문에 React문법에서는 꼭 닫혀줘야함
+            // class를 className으로 바꿔줘야함
+            class HeaderComponent extends React.Component {
+                render() {
+                    return (
+                        <header id="header">
+                            <div className="container">
+                                <div className="header_inner">
+                                    <div className="left-box">
+                                        <h1><a href="#" title="logo"><img src="./img/logo.png" alt="logo"/></a></h1>
                                     </div>
-                                </li>
-                                <li>
-                                    <a href="#" title="pages">pages <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub2 sub24">
+                                    <div className="right-box">
+                                        <nav id="nav">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" title="HOME">home <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub1">
+                                                        <ul>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Classic Corporate</a></dd>
+                                                                    <dd><a href="#">Classic Digital Agency</a></dd>
+                                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
+                                                                    <dd><a href="#">Classic Web Agency</a></dd>
+                                                                    <dd><a href="#">Classic One Page</a></dd>
+                                                                    <dd><a href="#">Classic Start Up</a></dd>
+                                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
+                                                                    <dd><a href="#">Classic Business</a></dd>
+                                                                    <dd><a href="#">Classic Shop</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Creative Studio</a></dd>
+                                                                    <dd><a href="#">Creative Business</a></dd>
+                                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Branding Agency</a></dd>
+                                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Small Business</a></dd>
+                                                                    <dd><a href="#">Creative Designer</a></dd>
+                                                                    <dd><a href="#">Creative Agency</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Portfolio Minimal</a></dd>
+                                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
+                                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
+                                                                    <dd><a href="#">Portfolio Personal</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro</a></dd>
+                                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
+                                                                    <dd><a href="#">Portfolio Photographer</a></dd>
+                                                                    <dd><a href="#">Portfolio Parallax</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Blog Grid</a></dd>
+                                                                    <dd><a href="#">Blog Masonry</a></dd>
+                                                                    <dd><a href="#">Blog Clean</a></dd>
+                                                                    <dd><a href="#">Blog Personal</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="pages">pages <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub2 sub24">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">About<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub1">
+                                                                    <ul>
+                                                                        <li><a href="#">About Us Simple</a></li>
+                                                                        <li><a href="#">About Us Classic</a></li>
+                                                                        <li><a href="#">About Us Modern</a></li>
+                                                                        <li><a href="#">About Me</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Services<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub2">
+                                                                    <ul>
+                                                                        <li><a href="#">Services Simple</a></li>
+                                                                        <li><a href="#">Services Classic</a></li>
+                                                                        <li><a href="#">Services Modern</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Contact<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub3">
+                                                                    <ul>
+                                                                        <li><a href="#">Contact Simple</a></li>
+                                                                        <li><a href="#">Contact Classic</a></li>
+                                                                        <li><a href="#">Contact Classic – Style 02</a></li>
+                                                                        <li><a href="#">Contact Modern</a></li>
+                                                                    </ul>
+                                                                </div>                                             
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Team<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub4">
+                                                                    <ul>
+                                                                        <li><a href="#">Team Simple</a></li>
+                                                                        <li><a href="#">Team Classic</a></li>
+                                                                    </ul>
+                                                                </div>                                                 
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Addition Pages<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub5">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                        </ul>
+                                                    </div> 
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="portfolio">portfolio <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub3">
+                                                        <ul>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">GRID – FULL WIDTH LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Grid Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid With Icon</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid Transform</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid Zooming</a></dd>
+                                                                    <dt><a href="#">MASONRY – FULL WIDTH LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Masonry Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Masonry With Icon</a></dd>
+                                                                    <dt><a href="#">METRO – FULL WIDTH LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Metro Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro With Icon</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro Transform</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro Zooming</a></dd>
+                                                                    <dt><a href="#">OTHER – FULL WIDTH LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Image Gallery</a></dd>
+                                                                    <dd><a href="#">Portfolio Justified</a></dd>
+                                                                    <dd><a href="#">Portfolio Carousel</a></dd>
+                                                                    <dd><a href="#">Portfolio Parallax</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">GRID – BOXED LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Grid Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid With Icon</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid Transform</a></dd>
+                                                                    <dd><a href="#">Portfolio Grid Zooming</a></dd>
+                                                                    <dt><a href="#">MASONRY – BOXED LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Masonry Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Masonry With Icon</a></dd>
+                                                                    <dt><a href="#">METRO – BOXED LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Metro Overlay</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro With Icon</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro Transform</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro Zooming</a></dd>
+                                                                    <dt><a href="#">OTHER – BOXED LAYOUTS</a></dt>
+                                                                    <dd><a href="#">Portfolio Image Gallery</a></dd>
+                                                                    <dd><a href="#">Portfolio Justified</a></dd>
+                                                                    <dd><a href="#">Portfolio Carousel</a></dd>
+                                                                    <dd><a href="#">Portfolio Parallax</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">SINGLE PROJECT PAGE</a></dt>
+                                                                    <dd><a href="#">Single Project Page 01</a></dd>
+                                                                    <dd><a href="#">Single Project Page 02</a></dd>
+                                                                    <dd><a href="#">Single Project Page 03</a></dd>
+                                                                    <dd><a href="#">Single Project Page 04</a></dd>
+                                                                    <dd><a href="#">Single Project Page 05</a></dd>
+                                                                    <dd><a href="#">Single Project Page 06</a></dd>
+                                                                    <dd><a href="#">Single Project Page 07</a></dd>
+                                                                    <dd><a href="#">Single Project Page 08</a></dd>
+                                                                    <dt><a href="#">PORTFOLIO COLUMNS</a></dt>
+                                                                    <dd><a href="#">Portfolio Two Columns</a></dd>
+                                                                    <dd><a href="#">Portfolio Three Columns</a></dd>
+                                                                    <dd><a href="#">Portfolio Four Columns</a></dd>
+                                                                    <dd><a href="#">Portfolio Five Columns</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#"><img src="./img/menu-banner-01.jpg" alt=""/></a></dt>
+                                                                    <dd><img src="./img/menu-banner-02.jpg" alt=""/></dd>
+                                                                </dl>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="blog">blog <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub4 sub24">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#"  className="sub-btn">Blog Standard<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub1">
+                                                                    <ul>
+                                                                        <li><a href="#">Blog Standard – Full Width</a></li>
+                                                                        <li><a href="#">Blog Standard With Left Sidebar</a></li>
+                                                                        <li><a href="#">Blog Standard With Right Sidebar</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Classic<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub2">
+                                                                    <ul>
+                                                                        <li><a href="#">Services Simple</a></li>
+                                                                        <li><a href="#">Services Classic</a></li>
+                                                                        <li><a href="#">Services Modern</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog List<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub3">
+                                                                    <ul>
+                                                                        <li><a href="#">Contact Simple</a></li>
+                                                                        <li><a href="#">Contact Classic</a></li>
+                                                                        <li><a href="#">Contact Classic – Style 02</a></li>
+                                                                        <li><a href="#">Contact Modern</a></li>
+                                                                    </ul>
+                                                                </div>                                             
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Grid<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub4">
+                                                                    <ul>
+                                                                        <li><a href="#">Team Simple</a></li>
+                                                                        <li><a href="#">Team Classic</a></li>
+                                                                    </ul>
+                                                                </div>                                                 
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Masonary<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub5">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Simple<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub6">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Clean<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub7">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Images<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub8">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Blog Only Text<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub9">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Post Layout<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub10">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" className="sub-btn">Post Type<i className="fa fa-angle-right"></i></a>
+                                                                <div className="sub-sub sub-sub11">
+                                                                    <ul>
+                                                                        <li><a href="#">Our Clients</a></li>
+                                                                        <li><a href="#">Error 404</a></li>
+                                                                        <li><a href="#">Coming Soon</a></li>
+                                                                        <li><a href="#">Coming Soon – Style 02</a></li>
+                                                                        <li><a href="#">Faq</a></li>
+                                                                        <li><a href="#">Maintenance</a></li>
+                                                                        <li><a href="#">Search Result</a></li>
+                                                                        <li><a href="#">Pricing</a></li>
+                                                                    </ul>
+                                                                </div>                                                
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="elements">elements <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub5">
+                                                        <ul>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Classic Corporate</a></dd>
+                                                                    <dd><a href="#">Classic Digital Agency</a></dd>
+                                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
+                                                                    <dd><a href="#">Classic Web Agency</a></dd>
+                                                                    <dd><a href="#">Classic One Page</a></dd>
+                                                                    <dd><a href="#">Classic Start Up</a></dd>
+                                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
+                                                                    <dd><a href="#">Classic Business</a></dd>
+                                                                    <dd><a href="#">Classic Shop</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Creative Studio</a></dd>
+                                                                    <dd><a href="#">Creative Business</a></dd>
+                                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Branding Agency</a></dd>
+                                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Small Business</a></dd>
+                                                                    <dd><a href="#">Creative Designer</a></dd>
+                                                                    <dd><a href="#">Creative Agency</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Portfolio Minimal</a></dd>
+                                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
+                                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
+                                                                    <dd><a href="#">Portfolio Personal</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro</a></dd>
+                                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
+                                                                    <dd><a href="#">Portfolio Photographer</a></dd>
+                                                                    <dd><a href="#">Portfolio Parallax</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Blog Grid</a></dd>
+                                                                    <dd><a href="#">Blog Masonry</a></dd>
+                                                                    <dd><a href="#">Blog Clean</a></dd>
+                                                                    <dd><a href="#">Blog Personal</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="features">features <i className="mian-menu-deco"></i></a>
+                                                    <div className="sub sub6">
+                                                        <ul>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Classic Corporate</a></dd>
+                                                                    <dd><a href="#">Classic Digital Agency</a></dd>
+                                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
+                                                                    <dd><a href="#">Classic Web Agency</a></dd>
+                                                                    <dd><a href="#">Classic One Page</a></dd>
+                                                                    <dd><a href="#">Classic Start Up</a></dd>
+                                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
+                                                                    <dd><a href="#">Classic Business</a></dd>
+                                                                    <dd><a href="#">Classic Shop</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Creative Studio</a></dd>
+                                                                    <dd><a href="#">Creative Business</a></dd>
+                                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Branding Agency</a></dd>
+                                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
+                                                                    <dd><a href="#">Creative Small Business</a></dd>
+                                                                    <dd><a href="#">Creative Designer</a></dd>
+                                                                    <dd><a href="#">Creative Agency</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Portfolio Minimal</a></dd>
+                                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
+                                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
+                                                                    <dd><a href="#">Portfolio Personal</a></dd>
+                                                                    <dd><a href="#">Portfolio Metro</a></dd>
+                                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
+                                                                    <dd><a href="#">Portfolio Photographer</a></dd>
+                                                                    <dd><a href="#">Portfolio Parallax</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                            <li>
+                                                                <dl>
+                                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
+                                                                    <dd><a href="#">Blog Grid</a></dd>
+                                                                    <dd><a href="#">Blog Masonry</a></dd>
+                                                                    <dd><a href="#">Blog Clean</a></dd>
+                                                                    <dd><a href="#">Blog Personal</a></dd>
+                                                                </dl>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <aside id="aside">
+                                            <span><i></i></span>
+                                            <span><a href="#" title="search"><i className="fas fa-search"></i></a></span>
+                                            <span><i></i></span>
+                                            <span><a href="#" className="cart" title="cart"><i className="fas fa-shopping-cart"></i></a></span>
+                                        </aside>
+                                    </div>
+                                    <div className="mobile">
+                                        <div className="mobile-menu">
+                                            <i className="fas fa-bars"></i>
+                                            <nav className="mobile-nav">
+                                                <ul>
+                                                    <li><a href="#" title="HOME">home <i className="mian-menu-deco"></i></a></li>
+                                                    <li><a href="#" title="pages">pages <i className="mian-menu-deco"></i></a></li>
+                                                    <li><a href="#" title="portfolio">portfolio <i className="mian-menu-deco"></i></a></li>
+                                                    <li><a href="#" title="blog">blog <i className="mian-menu-deco"></i></a></li>
+                                                    <li><a href="#" title="elements">elements <i className="mian-menu-deco"></i></a></li>
+                                                    <li><a href="#" title="features">features <i className="mian-menu-deco"></i></a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </header>
+                    );
+                }
+            }
+            
+            //main안에 section이 있기때문에 안에다 넣어줘야한다.
+            //component의 맨 앞글자를 소문자로 적으면 안된다.
+            class MainComponent extends React.Component {
+                render() {
+                    return (
+                        <div id="main">
+                            <Section1Component />
+                            <Section2Component />
+                            <Section3Component />
+                            <Section4Component />
+                        </div>
+                    );
+                }
+            }
+                
+                class Section1Component extends React.Component {
+                    render() {
+                        return (
+                            <div className="section1">
+                                <div className="slide-container">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img src="./img/homepage-5-slider-img-1-1.jpg" alt="mainslide"/>
+                                            </a>
+                                                <div className="title-box">
+                                                    <div className="title">
+                                                        <h3>We are an design & development agency</h3>
+                                                        <h2>CRAFT ELEGANT<br/>SOLUTIONS</h2>
+                                                        <span><a href="#">Purchase Now</a></span>
+                                                    </div>
+
+                                                </div>
+                                            
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="./img/homepage-5-slider-img-2-1.jpg" alt="mainslide"/>
+                                            </a>
+                                            <div className="title-box">
+                                                <div className="title">
+                                                    <h3>we combine design, thinking and technical craft</h3>
+                                                    <h2>CRAFTING DIGITAL<br/> EXPERIENCES</h2>
+                                                    <span><a href="#">Purchase Now</a></span>
+                                                </div>
+
+                                            </div>
+                                        
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="./img/homepage-5-slider-img-3-1.jpg" alt="mainslide"/>
+                                            </a>
+                                            <div className="title-box">
+                                                <div className="title">
+                                                    <h3>We are a design studio that believe in the ideas</h3>
+                                                    <h2>HIGHLY CREATIVE<br/>SOLUTIONS</h2>
+                                                    <span><a href="#">Purchase Now</a></span>
+                                                </div>
+                                            
+                                            </div>  
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        );
+                    }
+                }
+                class Section2Component extends React.Component {
+                    render() {
+                        return (
+                            <div className="section2">
+                                <div className="container">
+                                <div className="setction2-wrap">
+                                    <div className="title">
+                                        <h2>ABOUT DIGITAL AGENCY</h2>
+                                        <h3>
+                                            We always stay with our <strong>clients and respect</strong> their business. We <br/>
+                                            deliver 100% and provide instant response to help them succeed in <br/>
+                                            constantly changing and <strong>challenging business</strong> world. 
+                                        </h3>
+                                    </div>
+                                    <div className="content">
                                         <ul>
                                             <li>
-                                                <a href="#" class="sub-btn">About<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub1">
-                                                    <ul>
-                                                        <li><a href="#">About Us Simple</a></li>
-                                                        <li><a href="#">About Us Classic</a></li>
-                                                        <li><a href="#">About Us Modern</a></li>
-                                                        <li><a href="#">About Me</a></li>
-                                                    </ul>
+                                                <div className="column-wrap">
+                                                    <div className="img-box">
+                                                        <img src="./img/latest-blog5.jpg" alt="blog"/>
+                                                    </div>
+                                                    <div className="text-box">
+                                                        <div className="text-content">
+                                                            <h4>Understand the situation</h4>
+                                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                            <span><a href="#">Ecplore services <i className="fa fa-angle-right"></i></a></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="#" class="sub-btn">Services<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub2">
-                                                    <ul>
-                                                        <li><a href="#">Services Simple</a></li>
-                                                        <li><a href="#">Services Classic</a></li>
-                                                        <li><a href="#">Services Modern</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Contact<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub3">
-                                                    <ul>
-                                                        <li><a href="#">Contact Simple</a></li>
-                                                        <li><a href="#">Contact Classic</a></li>
-                                                        <li><a href="#">Contact Classic – Style 02</a></li>
-                                                        <li><a href="#">Contact Modern</a></li>
-                                                    </ul>
-                                                </div>                                             
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Team<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub4">
-                                                    <ul>
-                                                        <li><a href="#">Team Simple</a></li>
-                                                        <li><a href="#">Team Classic</a></li>
-                                                    </ul>
-                                                </div>                                                 
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Addition Pages<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub5">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                        </ul>
-                                    </div> 
-                                </li>
-                                <li>
-                                    <a href="#" title="portfolio">portfolio <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub3">
-                                        <ul>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">GRID – FULL WIDTH LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Grid Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Grid With Icon</a></dd>
-                                                    <dd><a href="#">Portfolio Grid Transform</a></dd>
-                                                    <dd><a href="#">Portfolio Grid Zooming</a></dd>
-                                                    <dt><a href="#">MASONRY – FULL WIDTH LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Masonry Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Masonry With Icon</a></dd>
-                                                    <dt><a href="#">METRO – FULL WIDTH LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Metro Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Metro With Icon</a></dd>
-                                                    <dd><a href="#">Portfolio Metro Transform</a></dd>
-                                                    <dd><a href="#">Portfolio Metro Zooming</a></dd>
-                                                    <dt><a href="#">OTHER – FULL WIDTH LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Image Gallery</a></dd>
-                                                    <dd><a href="#">Portfolio Justified</a></dd>
-                                                    <dd><a href="#">Portfolio Carousel</a></dd>
-                                                    <dd><a href="#">Portfolio Parallax</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">GRID – BOXED LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Grid Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Grid With Icon</a></dd>
-                                                    <dd><a href="#">Portfolio Grid Transform</a></dd>
-                                                    <dd><a href="#">Portfolio Grid Zooming</a></dd>
-                                                    <dt><a href="#">MASONRY – BOXED LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Masonry Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Masonry With Icon</a></dd>
-                                                    <dt><a href="#">METRO – BOXED LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Metro Overlay</a></dd>
-                                                    <dd><a href="#">Portfolio Metro With Icon</a></dd>
-                                                    <dd><a href="#">Portfolio Metro Transform</a></dd>
-                                                    <dd><a href="#">Portfolio Metro Zooming</a></dd>
-                                                    <dt><a href="#">OTHER – BOXED LAYOUTS</a></dt>
-                                                    <dd><a href="#">Portfolio Image Gallery</a></dd>
-                                                    <dd><a href="#">Portfolio Justified</a></dd>
-                                                    <dd><a href="#">Portfolio Carousel</a></dd>
-                                                    <dd><a href="#">Portfolio Parallax</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">SINGLE PROJECT PAGE</a></dt>
-                                                    <dd><a href="#">Single Project Page 01</a></dd>
-                                                    <dd><a href="#">Single Project Page 02</a></dd>
-                                                    <dd><a href="#">Single Project Page 03</a></dd>
-                                                    <dd><a href="#">Single Project Page 04</a></dd>
-                                                    <dd><a href="#">Single Project Page 05</a></dd>
-                                                    <dd><a href="#">Single Project Page 06</a></dd>
-                                                    <dd><a href="#">Single Project Page 07</a></dd>
-                                                    <dd><a href="#">Single Project Page 08</a></dd>
-                                                    <dt><a href="#">PORTFOLIO COLUMNS</a></dt>
-                                                    <dd><a href="#">Portfolio Two Columns</a></dd>
-                                                    <dd><a href="#">Portfolio Three Columns</a></dd>
-                                                    <dd><a href="#">Portfolio Four Columns</a></dd>
-                                                    <dd><a href="#">Portfolio Five Columns</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#"><img src="./img/menu-banner-01.jpg" alt=""></a></dt>
-                                                    <dd><img src="./img/menu-banner-02.jpg" alt=""></dd>
-                                                </dl>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" title="blog">blog <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub4 sub24">
-                                        <ul>
-                                            <li>
-                                                <a href="#"  class="sub-btn">Blog Standard<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub1">
-                                                    <ul>
-                                                        <li><a href="#">Blog Standard – Full Width</a></li>
-                                                        <li><a href="#">Blog Standard With Left Sidebar</a></li>
-                                                        <li><a href="#">Blog Standard With Right Sidebar</a></li>
-                                                    </ul>
+                                                <div className="column-wrap">
+                                                    <div className="img-box">
+                                                        <img src="./img/latest-blog6.jpg" alt="blog"/>
+                                                    </div>
+                                                    <div className="text-box">
+                                                        <div className="text-content">
+                                                            <h4>Understand the situation</h4>
+                                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                            <span><a href="#">Ecplore services <i className="fa fa-angle-right"></i></a></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="#" class="sub-btn">Blog Classic<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub2">
-                                                    <ul>
-                                                        <li><a href="#">Services Simple</a></li>
-                                                        <li><a href="#">Services Classic</a></li>
-                                                        <li><a href="#">Services Modern</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog List<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub3">
-                                                    <ul>
-                                                        <li><a href="#">Contact Simple</a></li>
-                                                        <li><a href="#">Contact Classic</a></li>
-                                                        <li><a href="#">Contact Classic – Style 02</a></li>
-                                                        <li><a href="#">Contact Modern</a></li>
-                                                    </ul>
-                                                </div>                                             
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Grid<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub4">
-                                                    <ul>
-                                                        <li><a href="#">Team Simple</a></li>
-                                                        <li><a href="#">Team Classic</a></li>
-                                                    </ul>
-                                                </div>                                                 
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Masonary<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub5">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Simple<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub6">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Clean<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub7">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Images<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub8">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Blog Only Text<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub9">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Post Layout<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub10">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
-                                            </li>
-                                            <li>
-                                                <a href="#" class="sub-btn">Post Type<i class="fa fa-angle-right"></i></a>
-                                                <div class="sub-sub sub-sub11">
-                                                    <ul>
-                                                        <li><a href="#">Our Clients</a></li>
-                                                        <li><a href="#">Error 404</a></li>
-                                                        <li><a href="#">Coming Soon</a></li>
-                                                        <li><a href="#">Coming Soon – Style 02</a></li>
-                                                        <li><a href="#">Faq</a></li>
-                                                        <li><a href="#">Maintenance</a></li>
-                                                        <li><a href="#">Search Result</a></li>
-                                                        <li><a href="#">Pricing</a></li>
-                                                    </ul>
-                                                </div>                                                
+                                                <div className="column-wrap">
+                                                    <div className="img-box">
+                                                        <img src="./img/latest-blog7.jpg" alt="blog"/>
+                                                    </div>
+                                                    <div className="text-box">
+                                                        <div className="text-content">
+                                                            <h4>Understand the situation</h4>
+                                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                            <span><a href="#">Ecplore services <i className="fa fa-angle-right"></i></a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
-                                <li>
-                                    <a href="#" title="elements">elements <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub5">
-                                        <ul>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Classic Corporate</a></dd>
-                                                    <dd><a href="#">Classic Digital Agency</a></dd>
-                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
-                                                    <dd><a href="#">Classic Web Agency</a></dd>
-                                                    <dd><a href="#">Classic One Page</a></dd>
-                                                    <dd><a href="#">Classic Start Up</a></dd>
-                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
-                                                    <dd><a href="#">Classic Business</a></dd>
-                                                    <dd><a href="#">Classic Shop</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Creative Studio</a></dd>
-                                                    <dd><a href="#">Creative Business</a></dd>
-                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Branding Agency</a></dd>
-                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Small Business</a></dd>
-                                                    <dd><a href="#">Creative Designer</a></dd>
-                                                    <dd><a href="#">Creative Agency</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Portfolio Minimal</a></dd>
-                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
-                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
-                                                    <dd><a href="#">Portfolio Personal</a></dd>
-                                                    <dd><a href="#">Portfolio Metro</a></dd>
-                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
-                                                    <dd><a href="#">Portfolio Photographer</a></dd>
-                                                    <dd><a href="#">Portfolio Parallax</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Blog Grid</a></dd>
-                                                    <dd><a href="#">Blog Masonry</a></dd>
-                                                    <dd><a href="#">Blog Clean</a></dd>
-                                                    <dd><a href="#">Blog Personal</a></dd>
-                                                </dl>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" title="features">features <i class="mian-menu-deco"></i></a>
-                                    <div class="sub sub6">
-                                        <ul>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CLASSIC HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Classic Corporate</a></dd>
-                                                    <dd><a href="#">Classic Digital Agency</a></dd>
-                                                    <dd><a href="#">Classic Innovation Agency</a></dd>
-                                                    <dd><a href="#">Classic Web Agency</a></dd>
-                                                    <dd><a href="#">Classic One Page</a></dd>
-                                                    <dd><a href="#">Classic Start Up</a></dd>
-                                                    <dt><a href="#">Classic Interactive Agency</a></dt>
-                                                    <dd><a href="#">Classic Business</a></dd>
-                                                    <dd><a href="#">Classic Shop</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">CREATIVE HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Creative Studio</a></dd>
-                                                    <dd><a href="#">Creative Business</a></dd>
-                                                    <dd><a href="#">Creative Simple Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Branding Agency</a></dd>
-                                                    <dd><a href="#">Creative Minimalist Portfolio</a></dd>
-                                                    <dd><a href="#">Creative Small Business</a></dd>
-                                                    <dd><a href="#">Creative Designer</a></dd>
-                                                    <dd><a href="#">Creative Agency</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">PORTFOLIO HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Portfolio Minimal</a></dd>
-                                                    <dd><a href="#">Portfolio Multiple Carousel</a></dd>
-                                                    <dd><a href="#">Portfolio Centered Slides</a></dd>
-                                                    <dd><a href="#">Portfolio Personal</a></dd>
-                                                    <dd><a href="#">Portfolio Metro</a></dd>
-                                                    <dd><a href="#">Portfolio Full Screen – Vertical</a></dd>
-                                                    <dd><a href="#">Portfolio Photographer</a></dd>
-                                                    <dd><a href="#">Portfolio Parallax</a></dd>
-                                                </dl>
-                                            </li>
-                                            <li>
-                                                <dl>
-                                                    <dt><a href="#">BLOG HOMEPAGES</a></dt>
-                                                    <dd><a href="#">Blog Grid</a></dd>
-                                                    <dd><a href="#">Blog Masonry</a></dd>
-                                                    <dd><a href="#">Blog Clean</a></dd>
-                                                    <dd><a href="#">Blog Personal</a></dd>
-                                                </dl>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                        <aside id="aside">
-                            <span><i></i></span>
-                            <span><a href="#" title="search"><i class="fas fa-search"></i></a></span>
-                            <span><i></i></span>
-                            <span><a href="#" class="cart" title="cart"><i class="fas fa-shopping-cart"></i></a></span>
-                        </aside>
-                    </div>
-                    <div class="mobile">
-                        <div class="mobile-menu">
-                            <i class="fas fa-bars"></i>
-                            <nav class="mobile-nav">
-                                <ul>
-                                    <li><a href="#" title="HOME">home <i class="mian-menu-deco"></i></a></li>
-                                    <li><a href="#" title="pages">pages <i class="mian-menu-deco"></i></a></li>
-                                    <li><a href="#" title="portfolio">portfolio <i class="mian-menu-deco"></i></a></li>
-                                    <li><a href="#" title="blog">blog <i class="mian-menu-deco"></i></a></li>
-                                    <li><a href="#" title="elements">elements <i class="mian-menu-deco"></i></a></li>
-                                    <li><a href="#" title="features">features <i class="mian-menu-deco"></i></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                 </div>   
-            </div>
-        </header>
-        <main id="main">
-            <div class="section1">
-                <div class="slide-container">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <img src="./img/homepage-5-slider-img-1-1.jpg" alt="mainslide1">
-                            </a>  
-                            <div class="title-box">
-                                <div class="title">
-                                    <h3>We are an design & development agency</h3>
-                                    <h2>CRAFT ELEGANT<br>SOLUTIONS</h2>
-                                    <span><a href="#">Purchase Now</a></span>
                                 </div>
                             </div>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="./img/homepage-5-slider-img-2-1.jpg"  alt="mainslide2">
-                            </a>
-                            <div class="title-box">
-                                <div class="title">
-                                    <h3>we combine design, thinking and technical craft</h3>
-                                    <h2>CRAFTING DIGITAL<br> EXPERIENCES</h2>
-                                    <span><a href="#">Purchase Now</a></span>
-                                </div> 
                             </div>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="./img/homepage-5-slider-img-3-1.jpg"  alt="mainslide3">
-                            </a>
-                            <div class="title-box">
-                                <div class="title">
-                                    <h3>We are a design studio that believe in the ideas</h3>
-                                    <h2>HIGHLY CREATIVE<br>SOLUTIONS</h2>
-                                    <span><a href="#">Purchase Now</a></span>
+                        );
+                    }
+                }
+                class Section3Component extends React.Component {
+                    render() {
+                        return (
+                            <div className="section3">
+                                <div className="container">
+                                    <div className="setction3-wrap">
+                                        <div className="title">
+                                            <h2>WHY CHOOSE US?</h2>
+                                            <h3>
+                                                We are delivering beautiful <br/>
+                                                digital products for you 
+                                            </h3>
+                                        </div>
+                                        <div className="content">
+                                            <ul>
+                                                <li>
+                                                    <div className="column-wrap">
+                                                        <div className="text-box">
+                                                                <h4><i className="fas fa-desktop"></i></h4>
+                                                                <h5>Unique Design</h5>
+                                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="column-wrap">
+                                                        <div className="text-box">
+                                                                <h4><i className="fas fa-ambulance"></i></h4>
+                                                                <h5>Different Layout</h5>
+                                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="column-wrap">
+                                                        <div className="text-box">
+                                                                <h4><i className="fas fa-laptop"></i></h4>
+                                                                <h5>Portfolio Styles</h5>
+                                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="column-wrap">
+                                                        <div className="text-box">
+                                                                <h4><i className="fas fa-bullseye"></i></h4>
+                                                                <h5>WordPress Theme</h5>
+                                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section2">
-                <div class="container">
-                    <div class="setction2-wrap">
-                        <div class="title">
-                            <h2>ABOUT DIGITAL AGENCY</h2>
-                            <h3>
-                                We always stay with our <strong>clients and respect</strong> their business.  We<br>
-                                deliver 100% and provide  instant response to help them succeed in
-                                <br>
-                                constantly changing and <strong>challenging business</strong> world. 
-                            </h3>
-                        </div>
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="img-box">
-                                            <img src="./img/latest-blog5.jpg" alt="블로그1">
-                                        </div>
-                                        <div class="text-box">
-                                            <div class="text-content">
-                                                <h4>Understand the situation</h4>
-                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                                <span><a href="#">Explore services <i class="fa fa-angle-right"></i></a></span>
+                        );
+                    }
+                }
+                class Section4Component extends React.Component {
+                    render() {
+                        return (
+                            <div className="section4">
+                                <div className="container">
+                                    <div className="sec4-wrap">
+                                        <div className="title">
+                                            <div>
+                                                <ul>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">ALL</a></li>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">BROCHURE</a></li>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">BRANDING</a></li>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">IDENTITY</a></li>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">WEB</a></li>
+                                                    <li><a href="#/" onClick={e => e.preventDefault} className="gallery-btn">PHOTOGRAPHY</a></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="img-box">
-                                            <img src="./img/latest-blog6.jpg" alt="블로그2">
-                                        </div>
-                                        <div class="text-box">
-                                            <div class="text-content">
-                                                <h4>Understand the situation</h4>
-                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                                <span><a href="#">Explore services <i class="fa fa-angle-right"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="img-box">
-                                            <img src="./img/latest-blog7.jpg" alt="블로그3">
-                                        </div>
-                                        <div class="text-box">
-                                            <div class="text-content">
-                                                <h4>Understand the situation</h4>
-                                                <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                                <span><a href="#">Explore services <i class="fa fa-angle-right"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section3">
-                <div class="container">
-                    <div class="setction3-wrap">
-                        <div class="title">
-                            <h2>WHY CHOOSE US?</h2>
-                            <h3>
-                                We are delivering beautiful<br>
-                                digital products for you
-                            </h3>
-                        </div>
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="text-box">
-                                            <h4><i class="fas fa-desktop"></i></h4>
-                                            <h5>Unique Design</h5>
-                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
+                                        <div className="content">
+                                            <ul className="gallery">
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item20.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item23.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item22.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item21.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item24.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item16.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item26.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                                <li>
+                                                    <div className="img-wrap"><a href="#" className="img-btn"><img src="./img/portfolio-item19.jpg.webp" alt=""/></a></div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="text-box">
-                                            <h4><i class="fas fa-ambulance"></i></h4>
-                                            <h5>Different Layout</h5>
-                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="text-box">
-                                            <h4><i class="fas fa-laptop"></i></h4>
-                                            <h5>Portfolio Styles</h5>
-                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="column-wrap">
-                                        <div class="text-box">
-                                            <h4><i class="fas fa-bullseye"></i></h4>
-                                            <h5>WordPress Theme</h5>
-                                            <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section4">
-                <div class="container">
-                    <div class="sec4-wrap">
-                        <div class="title">
-                            <div>
-                                <ul>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">ALL</a></li>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">BROCHURE</a></li>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">BRANDING</a></li>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">IDENTITY</a></li>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">WEB</a></li>
-                                    <li><a href="javascript:void(0)" class="gallery-btn">PHOTOGRAPHY</a></li>
-                                </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="content">
-                            <ul class="gallery">
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item20.jpg.webp" alt="포트폴리오1"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item23.jpg.webp" alt="포트폴리오2"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item22.jpg.webp" alt="포트폴리오3"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item21.jpg.webp" alt="포트폴리오4"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item24.jpg.webp" alt="포트폴리오5"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item16.jpg.webp" alt="포트폴리오6"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item26.jpg.webp" alt="포트폴리오7"></span></a></div>
-                                </li>
-                                <li>
-                                    <div class="img-wrap"><a href="#"><span class="img-btn"><img src="./img/portfolio-item19.jpg.webp" alt="포트폴리오8"></span></a></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer id="footer"></footer>
-    </div>
-</div>
+                        );
+                    }
+                }                
+                 
+            class FooterComponent extends React.Component {
+                render() {
+                    return (
+                        <footer id="footer">
+                             <div className="container">
+                                <div className="gap">
+                                    <div className="foot-t">
+                                        <div className="foot_t_left">London Based <br /> Creative Studio</div>
+                                        <div className="foot_t_center">
+                                            <p>
+                                                301 The Greenhouse,<br /> 
+                                                Custard Factory, London, E2 8DY.<br />
+                                                <a href="#!">sales@domain.com</a> | +44 (0) 123 456 7890
+                                            </p>
+                                        </div>
+                                        <div className="foot_t_right">
+                                            <div className="foot-logo"><a href="#!"><img src="./img/logo-white.png" alt="footImg" /></a></div>
+                                            <ul className="sns">
+                                                <li><a href="#!" title="TWITTER">TWITTER</a></li>
+                                                <li><a href="#!" title=" FACEBOOK"> FACEBOOK</a></li>
+                                                <li><a href="#!" title=" INSTAGRAM"> INSTAGRAM</a></li>
+                                                <li><a href="#!" title=" DRIBBBLE"> DRIBBBLE</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="foot-b">
+                                        <div className="Concept">POFO - Portfolio Concept Theme</div>
+                                        <div className="copy">© 2021 POFO is Proudly Powered by ThemeZaa</div>
+                                    </div>
+                                </div>
+                            </div>
+                         </footer>
+                    );
+                }
+            }
+            //root안에 WrapConponent를 넣어줘야함
+            ReactDOM.render(
+                <WrapConponent />,
+                document.getElementById('root')
+            );
+    </script>
+    <script type="text/babel" src="./js/script.js"></script>
 </body>
 </html>
